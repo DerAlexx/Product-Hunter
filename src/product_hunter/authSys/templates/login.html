@@ -1,1 +1,16 @@
-<h1>login</h1>
+<h1>Just Login</h1>
+<br><br>
+
+<form method="POST" action="login">
+    {% csrf_token %}
+    Username:<br>
+    <input type="text" name="username"><br>
+    Password:<br>
+    <input type="password" name="psw"><br>
+    <button type="submit" >Sign up</button>
+</form>
+<br><i style="color:red;font-weight:bold;">
+    {% if error %}
+    {{error}}
+    {% endif %}
+</i>
