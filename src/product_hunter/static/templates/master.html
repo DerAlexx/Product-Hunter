@@ -5,13 +5,52 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+    <title>{% block title %} {% endblock %} - Snipper</title>
+    {% block head %}
+    {% endblock %}
+    {% block SEO %}
+    {% endblock %}
     <link href="{% static '/Bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-  </head>
-  <body>
-
-
     <script src="{% static '/Bootstrap/js/jquery.min.js' %}"></script>
-    <script src="{% static '/Bootstrap/js/bootstrap.min' %}"></script>
+    <script src="{% static '/Bootstrap/js/bootstrap.min.js' %}"></script>
+  </head>
+  <body style="width:100% !important; height: 100% !important; background-color:#DCDCDC">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="/">Snipper</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="/">Home</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/">About</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/">Imprint</a>
+              </li><br>
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="btn btn-danger" href="javascript:{document.getElementById('logout').submit()}" onclick="">Logout</a>
+                <form id="logout" method="POST" action="/logout">
+                    {% csrf_token %}
+                    <input type="hidden" />
+                </form>
+              </li>
+              {% else %}
+                <li class="nav-item">
+                  <a class="btn btn-outline-primary my-2 my-sm-0" href="login">Login </a>
+                  <a class="btn btn-outline-primary my-2 my-sm-0" href="signup">Signup</a>
+                </li>
+              {% endif %}
+            </ul>
+          </div>
+        </nav>
+    <div class="w-100 p-3 container-fluid">
+    {% block content %}{% endblock %}
+    </div>
 </body>
 </html>

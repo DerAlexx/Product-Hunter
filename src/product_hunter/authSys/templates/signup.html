@@ -1,18 +1,32 @@
-<h1>Signup</h1>
-<br><br>
+{% extends "master.html" %}
+{% block title %}Signup{% endblock %}
+{% block head %}
 
-<form method="POST" action="signup">
-    {% csrf_token %}
-    Username:<br>
-    <input type="text" name="username"><br>
-    Password:<br>
-    <input type="password" name="psw"><br>
-    Password again:<br>
-    <input type="password" name="pswc"><br><br>
-    <button type="submit" >Sign up</button>
-</form>
-<br><i style="color:red;font-weight:bold;">
-    {% if error %}
-    {{error}}
-    {% endif %}
-</i>
+{% endblock %}
+{% block content %}
+<div class="w-100 p-3 container-fluid">
+        <div class="row">
+                <div class="col-6 col-md-4"></div>
+                <div class="col-6 col-md-4">
+                        {% if user.is_authenticated %}
+                        <h4>You are already login, but nice to see you {{ user.get_username }}!</h4>
+                        {% else %}
+                        {% if error %}
+                            <div class="alert alert-danger" role="alert">{{error}}</div>
+                        {% endif %}
+                        <h1>Signup</h1>
+                        <form class="form-group" method="POST" action="signup">
+                            {% csrf_token %}
+                            Username:<br>
+                            <input class="form-control" type="text" name="username"><br>
+                            Password:<br>
+                            <input class="form-control" type="password" name="psw"><br>
+                            Password again:<br>
+                            <input class="form-control" type="password" name="pswc"><br>
+                            <button class="btn btn-primary" type="submit" >Sign up</button>
+                        </form>
+                        {% endif %}
+                </div>
+        </div>
+    </div>       
+{% endblock %}

@@ -1,18 +1,13 @@
-<!DOCTYPE html>
-<head><title>H</title></head>
-<body>
-    <h1>Hello, world!dddd</h1>
-        {% if user.is_authenticated %}
-        <h1>Welcome {{ user.get_username }}</h1>
-            <a href="javascript:{document.getElementById('logout').submit()}" onclick="">Logout</a>
-            <form id="logout" method="POST" action="/logout">
-                {% csrf_token %}
-                <input type="hidden" />
-            </form>
-        {% else %}
-            <a href="login">Login </a>
-            <a href="signup">Signup</a>
-        {% endif %}
-</body>
+{% extends "master.html" %}
+{% block title %}Home{% endblock %}
+{% block head %}
 
-    
+{% endblock %}
+{% block content %}
+    <h1>Timeline</h1>
+    {% if user.is_authenticated %}
+    <h4>Welcome {{ user.get_username }}</h4>
+    {% else %}
+    <h6>Not member yet! Just sign up <a class="btn btn-primary my-2 my-sm-0" href="/signup">Sign up</a></h6> 
+    {% endif %}   
+{% endblock %}
