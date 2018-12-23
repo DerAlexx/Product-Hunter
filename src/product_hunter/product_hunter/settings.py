@@ -1,16 +1,9 @@
 import os
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '37zg1-k8o^xu2jbv!rdq4*&2ed5z2rni*5m7=8nniu_b%ktn12'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -42,7 +35,7 @@ ROOT_URLCONF = 'product_hunter.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['../product_hunter/static/templates','../product_hunter/product/templates','../product_hunter/auth/templates'],
+        'DIRS': ['../product_hunter/static/templates','../product_hunter/product/templates','../product_hunter/authSys/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -57,10 +50,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'product_hunter.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
+# The Database values ar just example Values 
+# You have to put your values in this part
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
