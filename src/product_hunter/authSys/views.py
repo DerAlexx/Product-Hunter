@@ -17,7 +17,9 @@ def login_(request):
         return render(request, 'login.html')
 
 def logout_(request):
-    return redirect("/")
+    if request.method == 'POST':
+        auth.logout(request)
+        return redirect("/")
 
 def sign_up_(request):
     if request.method == 'POST':
