@@ -60,6 +60,8 @@ You should now see on the left site the name of the project --> product-hunter
 
 ### Databaseconnection
 
+** It is  importent to create a Database in your DBMS (Postgres, MySQL, ...) **
+
 Go to the ** Settings.py ** in * ../src/product_hunter/product_hunter/settings.py
 
 Scroll Down to the section: ** DATABASES **.
@@ -69,12 +71,12 @@ Scroll Down to the section: ** DATABASES **.
     '''
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'producthunter',
-            'USER':'postgres',
-            'PASSWORD': 'hundkatzemaus',
-            'HOST':'localhost',
-            'PORT':'5432'
+            'ENGINE': 'django.db.backends.postgresql', --> Depending on the Databasesystem
+            'NAME': 'yourDatabaseName', --> Name of the Database you created
+            'USER':'yourDBusername',
+            'PASSWORD': 'yourPassword', 
+            'HOST':'localhost', --> This should be fine
+            'PORT':'5432' --> This is the standard postgresport
         }
     }
 
@@ -83,6 +85,14 @@ Scroll Down to the section: ** DATABASES **.
 ** Enter all your information. Depending on your Databaseserversettings**
 
 ** Notice: All information in this section is just placeholder information! You need to add yours in order to run this Project ** 
+
+#### List of included Databasemanagementsystems
+    1. SQLite
+    2. PostgresSQL
+    3. Oracle
+    4. Redshift
+    5. MS SQL Server 
+    6. MySQL
 
 ### Run the Server
 
