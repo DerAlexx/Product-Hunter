@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import product
 import imghdr,datetime
@@ -14,9 +14,9 @@ def create(request):
             if request.POST.get('dis') is not None and len(request.POST.get('dis')) >= 20:
                 if len(request.POST.get('dis')) <= 500:
                     if request.POST.get('url') is not None and len(request.POST.get('url')) > 2:
-                        if "jpg" in (imghdr.what(request.FILES.get('icon')).lower()) or "jpeg" in (imghdr.what(request.FILES.get('icon')).lower()) or "png" in (imghdr.what(request.FILES.get('icon')).lower()):
-                            print(imghdr.what(request.FILES.get('icon')).lower())
-                            if "jpg" in (imghdr.what(request.FILES.get('image')).lower()) or "jpeg" in (imghdr.what(request.FILES.get('image')).lower()) or "png" in (imghdr.what(request.FILES.get('image')).lower()):
+                        #if "jpg" in (imghdr.what(request.FILES.get('icon')).lower()) or "jpeg" in (imghdr.what(request.FILES.get('icon')).lower()) or "png" in (imghdr.what(request.FILES.get('icon')).lower()):
+                            #print(imghdr.what(request.FILES.get('icon')).lower())
+                            #if "jpg" in (imghdr.what(request.FILES.get('image')).lower()) or "jpeg" in (imghdr.what(request.FILES.get('image')).lower()) or "png" in (imghdr.what(request.FILES.get('image')).lower()):
                                 prodt = product()
                                 prodt.title = request.POST.get('title')
                                 prodt.body = request.POST.get('dis')
@@ -29,11 +29,11 @@ def create(request):
                                 prodt.pub_date = datetime.datetime.now()
                                 prodt.hunter = request.user
                                 prodt.save()
-                                return redirect("/")
-                            else:
-                                return render(request, 'create.html', {'error':"Images must be JPG or PNG Format"}) 
-                        else:
-                            return render(request, 'create.html', {'error':"Icons must be JPG or PNG Format"}) 
+                                return redirect("/product/" + str(prodt.id))
+                            #else:
+                                #return render(request, 'create.html', {'error':"Images must be JPG or PNG Format"}) 
+                        #else:
+                            #return render(request, 'create.html', {'error':"Icons must be JPG or PNG Format"}) 
                     else:
                         return render(request, 'create.html', {'error':"Enter a valid URL"}) 
                 else:
@@ -44,3 +44,8 @@ def create(request):
             return render(request, 'create.html', {'error':'A Product should have a Title with aleast the length of 4 Characters!'})
     else:
         return render(request, 'create.html')
+
+
+def detail_product(request, product_id):
+    prod = get_object_or_404(product, pk=product_id)
+    return render(request, 'details.html', {'product':prod, 'key':product_id})

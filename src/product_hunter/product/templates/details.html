@@ -1,0 +1,54 @@
+{% extends "master.html" %}
+{% block title %}Create a Product{% endblock %}
+{% block head %}
+<style>
+    .icon_size_ {
+        width:100%; 
+        height:100%;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<div class="w-75 p-3 container-fluid" style="background-color: white">
+        <div class="row">
+                <div class="col-2">
+                    <img src="{{product.icon.url}}" alt="{{product.title}} at Snipper.com" class="rounded float-left icon_size_">
+                </div>
+                <div class="col-2">
+                    <h3 style="text-align:left">{{product.title}}</h3><hr><br>
+                    <p style="text-transform: uppercase"><span class="oi oi-person"></span>  {{product.hunter}} </p>
+                    <script>
+                    </script>
+                    <a href="#" class="btn btn-success"><span class="oi oi-heart"></span><b id="likes"> Like me!</b></a>
+                    
+                </div>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div class="row">
+            <div class="col-6">
+                <img src="{{product.image.url}}" alt="{{product.title}} at Snipper.com" class="rounded float-left icon_size_">
+            </div>
+
+            <div class="col-4 float-right">
+                <h3><span class="oi oi-info"></span> Description:</h3>
+                <p>{{product.body}}</p><br>
+                <a href="{{product.url}}" class="btn btn-primary"><span class="oi oi-globe"></span> Visit my Website</a>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+                <div class="col-2">
+                    <p><span class="oi oi-clock"></span> {{product.pub_date}}</p>
+                </div>
+                <div class="col-1">
+                    <p style="text-transform: uppercase"><span class="oi oi-person"></span>  {{product.hunter}} </p>
+                </div>
+                <div class="col-1">
+                        <p style="text-transform: uppercase"><span class="oi oi-person"></span>  {{product.votes}} </p>
+                </div>
+            </div>
+
+    </div>       
+{% endblock %}
