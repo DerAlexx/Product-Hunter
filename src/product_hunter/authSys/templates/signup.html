@@ -1,20 +1,33 @@
 {% extends "master.html" %}
+{% load static %}
 {% block title %}Signup{% endblock %}
 {% block head %}
 
 {% endblock %}
+
+{% block style %}
+<style>
+.body_ {
+    background-image:url("{% static '/img/urban.jpg' %}");
+}
+
+</style>
+{% endblock %}
 {% block content %}
-<div class="w-100 p-3 container-fluid">
-        <div class="row">
-                <div class="col-6 col-md-4"></div>
-                <div class="col-6 col-md-4">
+<div class="w-100 p-3 container-fluid align-self-center">
+        <div class="row" style="width:100%; height:100%; top:0px; left:0px; right:0px; bottom:0px; position:absolute">
+                <div style="padding: 5px 75px 5px 75px; border: 1px solid white; float: none; margin: auto auto auto auto; background:rgba(0, 0, 0, 0.55); color:white" class="col-4">
                         {% if user.is_authenticated %}
+                        <br>
                         <h4>You are already login, but nice to see you {{ user.get_username }}!</h4>
+                        <br>
                         {% else %}
                         {% if error %}
+                            <br>
                             <div class="alert alert-danger" role="alert">{{error}}</div>
+                            <br>
                         {% endif %}
-                        <h1>Signup</h1>
+                        <br>
                         <form class="form-group" method="POST" action="/signup">
                             {% csrf_token %}
                             Username:<br>
@@ -29,4 +42,5 @@
                 </div>
         </div>
     </div>       
+
 {% endblock %}

@@ -43,5 +43,4 @@ def create(request):
         else:
             return render(request, 'create.html', {'error':'A Product should have a Title with aleast the length of 4 Characters!'})
     else:
-        print("h2hh")
         return render(request, 'create.html')

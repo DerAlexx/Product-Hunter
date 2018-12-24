@@ -13,9 +13,18 @@
     <link href="{% static '/Bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <script src="{% static '/Bootstrap/js/jquery.min.js' %}"></script>
     <script src="{% static '/Bootstrap/js/bootstrap.min.js' %}"></script>
+    <style>
+    .body_ {
+      width:100% !important; 
+      height: 100% !important; 
+      background-color:#DCDCDC;
+    }
+    </style>
+    {% block style %}
+    {% endblock %}
   </head>
-  <body style="width:100% !important; height: 100% !important; background-color:#DCDCDC">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light p-3 ">
+  <body class="body_">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light p-3" style="z-index:10000!important">
           <a class="navbar-brand" href="/">Snipper</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
