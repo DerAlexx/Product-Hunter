@@ -15,7 +15,7 @@
     <script src="{% static '/Bootstrap/js/bootstrap.min.js' %}"></script>
   </head>
   <body style="width:100% !important; height: 100% !important; background-color:#DCDCDC">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light p-3 ">
           <a class="navbar-brand" href="/">Snipper</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -23,28 +23,33 @@
         
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
+              <li class="nav-item  px-2">
                 <a class="nav-link" href="/">Home</a>
               </li>
-              <li class="nav-item active">
+              <li class="nav-item px-2">
                 <a class="nav-link" href="/">About</a>
               </li>
-              <li class="nav-item active">
+              <li class="nav-item px-2">
                 <a class="nav-link" href="/">Imprint</a>
               </li><br>
+              <li class="nav-item px-2">
+                  <a class="btn btn-outline-info" href="/create" onclick="">create</a>
+              </li><br>
               {% if user.is_authenticated %}
-              <li class="nav-item">
-                <a class="btn btn-danger" href="javascript:{document.getElementById('logout').submit()}" onclick="">Logout</a>
+              <li class="nav-item px-2">
+                <a class="btn btn-outline-danger" href="javascript:{document.getElementById('logout').submit()}" onclick="">Logout</a>
                 <form id="logout" method="POST" action="/logout">
                     {% csrf_token %}
                     <input type="hidden" />
                 </form>
               </li>
               {% else %}
-                <li class="nav-item">
-                  <a class="btn btn-outline-primary my-2 my-sm-0" href="login">Login </a>
-                  <a class="btn btn-outline-primary my-2 my-sm-0" href="signup">Signup</a>
+                <li class="nav-item px-2 float-right">
+                  <a class="btn btn-outline-primary my-2 my-sm-0" href="/login">Login </a>
                 </li>
+                <li class="nav-item px-2 float-right">
+                    <a class="btn btn-outline-primary my-2 my-sm-0" href="/signup">Signup</a>
+                  </li>
               {% endif %}
             </ul>
           </div>
