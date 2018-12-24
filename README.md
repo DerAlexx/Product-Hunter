@@ -131,24 +131,24 @@ You can reach this server by entering in your Browser:
 
 ### Dependences:
 
-1. cx-Oracle==7.0.0
-2. db.py==0.5.3
-3. Django==2.1.4
-4. django-background-tasks==1.2.0
-5. django-compat==1.0.15
-6. django-filter==2.0.0
-7. django-rest-framework==0.1.0
-8. djangorestframework==3.9.0
-9. Markdown==3.0.1
-10. numpy==1.15.4
-11. pandas==0.23.4
-12. Pillow==5.3.0
-13. prettytable==0.7.2
-14. psycopg2==2.7.6.1
-15. pybars3==0.9.6
-16. PyMeta3==0.5.1
-17. python-dateutil==2.7.5
-18. pytz==2018.7
-19. six==1.12.0
+    1. cx-Oracle==7.0.0
+    2. db.py==0.5.3
+    3. Django==2.1.4
+    4. django-background-tasks==1.2.0
+    5. django-compat==1.0.15
+    6. django-filter==2.0.0
+    7. django-rest-framework==0.1.0
+    8. djangorestframework==3.9.0
+    9. Markdown==3.0.1
+    10. numpy==1.15.4
+    11. pandas==0.23.4
+    12. Pillow==5.3.0
+    13. prettytable==0.7.2
+    14. psycopg2==2.7.6.1
+    15. pybars3==0.9.6
+    16. PyMeta3==0.5.1
+    17. python-dateutil==2.7.5
+    18. pytz==2018.7
+    19. six==1.12.0
 
 ## Thanks you and have a nice day!
