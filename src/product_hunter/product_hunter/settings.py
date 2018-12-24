@@ -96,9 +96,8 @@ STATICFILES_DIRS = [
     '../'
 ]
 
-MEDIA_ROOT = '../media/'
-
-MEDIA_URL = "/img/"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
