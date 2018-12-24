@@ -4,19 +4,34 @@
 {% block head %}
 
 {% endblock %}
-
 {% block style %}
 <style>
-.body_ {
-    background-image:url("{% static '/img/urban.jpg' %}");
-}
-
+    .body_ {
+        background-image:url("{% static '/img/urban.jpg' %}");
+    }
+    .row_ {
+        width:100%; 
+        height:100%; 
+        top:0px; 
+        left:0px; 
+        right:0px; 
+        bottom:0px; 
+        position:absolute;
+    }
+    .col_ {
+        padding: 5px 75px 5px 75px; 
+        border: 1px solid white; 
+        float: none; 
+        margin: auto auto auto auto; 
+        background:rgba(0, 0, 0, 0.55); 
+        color:white;
+    }
 </style>
 {% endblock %}
 {% block content %}
 <div class="w-100 p-3 container-fluid align-self-center">
-        <div class="row" style="width:100%; height:100%; top:0px; left:0px; right:0px; bottom:0px; position:absolute">
-                <div style="padding: 5px 75px 5px 75px; border: 1px solid white; float: none; margin: auto auto auto auto; background:rgba(0, 0, 0, 0.55); color:white" class="col-4">
+        <div class="row row_" >
+                <div class="col-4 col_">
                         {% if user.is_authenticated %}
                         <br>
                         <h4>You are already login, but nice to see you {{ user.get_username }}!</h4>
@@ -34,7 +49,7 @@
                             <input class="form-control" type="text" name="username"><br>
                             Password:<br>
                             <input class="form-control" type="password" name="psw"><br>
-                            Password again:<br>
+                            Confirm your Password:<br>
                             <input class="form-control" type="password" name="pswc"><br>
                             <button class="btn btn-primary" type="submit" >Sign up</button>
                         </form>
