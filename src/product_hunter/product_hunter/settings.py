@@ -15,6 +15,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    # Own Apps
+    'hunterRest',
     'authSys',
     'product'
 ]
@@ -96,3 +99,9 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = '../media/'
 
 MEDIA_URL = "/img/"
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
