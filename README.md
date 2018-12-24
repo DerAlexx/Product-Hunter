@@ -17,9 +17,11 @@ You can get this project pretty easyly.
 There are many things you have to install in order to work with this project correctly.
 
 ### Requirementslist:
-    1. Postgressql or an equivalent (We just tested this project with Prostgres so i would recommend you Postgres)
+    1. Postgressql, MySQL, 
     2. Access to the SQL-Server
     3. ...
+
+** We just tested this project with Prostgres so i would recommend you Postgres ** 
 
 ### Reminder - Python and Django, etc.
 
@@ -62,9 +64,27 @@ Go to the ** Settings.py ** in * ../src/product_hunter/product_hunter/settings.p
 
 Scroll Down to the section: ** DATABASES **.
 
-Enter all your information. 
+** Looks like: **
+
+    '''
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'producthunter',
+            'USER':'postgres',
+            'PASSWORD': 'hundkatzemaus',
+            'HOST':'localhost',
+            'PORT':'5432'
+        }
+    }
+
+    '''
+
+** Enter all your information. Depending on your Databaseserversettings**
 
 ** Notice: All information in this section is just placeholder information! You need to add yours in order to run this Project ** 
+
+### Run the Server
 
 After connecting to the Database, navigate to * ../src/product_hunter/ * and run the following command:
 
@@ -75,6 +95,8 @@ In case this works fine your Database is working. In case this is not working, p
 Finally run:
 
 > python manage.py runserver
+
+### Reach the Server
 
 You can reach this server by entering in your Browser:
 
@@ -89,4 +111,4 @@ You can reach this server by entering in your Browser:
 > http://localhost:6666/
 
 
-## Thanks you 
+## Thanks you and have a nice day!
