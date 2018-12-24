@@ -1,13 +1,29 @@
 {% extends "master.html" %}
 {% block title %}Create a Product{% endblock %}
 {% block head %}
-
 {% endblock %}
 {% block content %}
-    <h1>Create a new Product</h1>
-    {% if user.is_authenticated %}
-    <h4>You got a idee {{ user.get_username }}, nice just create it and see what people think</h4>
-    {% else %}
-    <h6>Not member yet? Just sign up! Or Log in</h6> 
-    {% endif %}   
+<div class="w-100 p-3 container-fluid">
+        <div class="row">
+                <div class="col-6 col-md-4"></div>
+                <div class="col-6 col-md-4">
+                        {% if user.is_authenticated %}
+                        <h4>You are already login, but nice to see you {{ user.get_username }}!</h4>
+                        {% else %}
+                        {% if error %}
+                            <div class="alert alert-danger" role="alert">{{error}}</div>
+                        {% endif %}
+                        <h1>Login</h1>
+                        <form class="form-group" method="POST" action="login" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            Username:<br>
+                            <input class="form-control" type="text" name="username"><br>
+                            Password:<br>
+                            <input class="form-control" type="password" name="psw"><br>
+                            <button class="btn btn-primary" type="submit" >Login</button>
+                        </form>
+                        {% endif %}
+                </div>
+        </div>
+    </div>       
 {% endblock %}
