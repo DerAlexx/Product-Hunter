@@ -7,22 +7,42 @@
         <div class="row">
                 <div class="col-6 col-md-4"></div>
                 <div class="col-6 col-md-4">
-                        {% if user.is_authenticated %}
-                        <h4>You are already login, but nice to see you {{ user.get_username }}!</h4>
-                        {% else %}
                         {% if error %}
                             <div class="alert alert-danger" role="alert">{{error}}</div>
                         {% endif %}
-                        <h1>Login</h1>
-                        <form class="form-group" method="POST" action="login" enctype="multipart/form-data">
+                        <h1>Create a Product</h1>
+                        <h6>You are one step away form submiting your great idea!</h6><hr>
+                        <form class="form-group" method="POST" action="/product/create/" enctype="multipart/form-data">
                             {% csrf_token %}
-                            Username:<br>
-                            <input class="form-control" type="text" name="username"><br>
-                            Password:<br>
-                            <input class="form-control" type="password" name="psw"><br>
-                            <button class="btn btn-primary" type="submit" >Login</button>
+                            Title:<br>
+                            <input class="form-control" type="text" placeholder="Daugthers new talking Teddy" name="title"><br>
+                            Description:<br>
+                            <textarea id="dis" class="form-control" placeholder="A Teddybar able to talk and replay to questions ..." style="min-height: 80px" rows="5" name="dis"></textarea>
+                            <script>
+                            document.getElementById('dis').onkeyup = function () {
+                                if (this.value.length > 500) {
+                                    document.getElementById('count').style.color = "#dc3545";
+                                }
+                                else if (this.value.length >= 0 && this.value.length <= 20 || this.value.length > 460 && this.value.length <= 500) {
+                                    document.getElementById('count').style.color = "#FF7400";
+                                }
+                                else {
+                                    document.getElementById('count').style.color = "black";
+                                }
+                                document.getElementById('count').innerHTML = (this.value.length) + "/500 Characters";
+                            };
+                            </script>
+                            <p id="count" style="float: right;color:#FF7400">0/500 Characters</p>
+                            <br>
+                            URL:<br>
+                            <input placeholder="http://www.teddy-talking.com" class="form-control" type="text" name="url"><br>
+                            Icon :
+                            <input type="file" name="icon"><br><br>
+                            Image:
+                            <input type="file" name="image"><br><br>
+                            <hr>
+                            <button class="btn btn-primary" type="submit" >Add Product</button>
                         </form>
-                        {% endif %}
                 </div>
         </div>
     </div>       

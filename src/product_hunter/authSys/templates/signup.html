@@ -15,7 +15,7 @@
                             <div class="alert alert-danger" role="alert">{{error}}</div>
                         {% endif %}
                         <h1>Signup</h1>
-                        <form class="form-group" method="POST" action="signup">
+                        <form class="form-group" method="POST" action="/signup">
                             {% csrf_token %}
                             Username:<br>
                             <input class="form-control" type="text" name="username"><br>
