@@ -1,6 +1,6 @@
 # Product-Hunter-Django
 
-## Downlaod Product-Hunter
+## Download Product-Hunter
 
 You can get this project pretty easily. 
 
@@ -150,5 +150,11 @@ You can reach this server by entering in your Browser:
     17. python-dateutil==2.7.5
     18. pytz==2018.7
     19. six==1.12.0
+
+## External Libs/Projects used
+
+    1. Bootstrap 4 
+    2. Iconic
+    3. Chart.js
 
 ## Thanks you and have a nice day!
