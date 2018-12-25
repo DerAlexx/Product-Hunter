@@ -1,13 +1,56 @@
 {% extends "master.html" %}
 {% block title %}Home{% endblock %}
 {% block head %}
-
+<style>
+        .icon_size_ {
+            width:75%; 
+            height:75%;
+            min-height:75%;
+            margin: 12.5% auto auto auto !important;
+        }
+</style>
 {% endblock %}
 {% block content %}
-    <h1>Timeline</h1>
-    {% if user.is_authenticated %}
-    <h4>Welcome {{ user.get_username }}</h4>
-    {% else %}
-    <h6>Not member yet! Just sign up <a class="btn btn-primary my-2 my-sm-0" href="/signup">Sign up</a></h6> 
-    {% endif %}   
+<div class="w-75 p-3 container-fluid">
+    <br>
+    <h3 class="list-group-item list-group-item-info"><span class="oi oi-compass"></span> Products</h3> 
+    <hr>
+    <div class="list-group-item list-group-item-secondary">
+        <from>
+            <label for="exampleFormControlSelect1">Order by:</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+                <option value="volvo">Most Love<span class="oi oi-heart"></span></option>
+                <option value="saab">Less Love</option>
+                <option value="opel">Newest</option>
+                <option value="audi">Oldest</option>
+            </select>
+            <br>
+            <button class="btn btn-info">Order</button>
+        </from>
+    </div>
+    <hr>
+    {% for prod in product.all %}
+    <div class="card-deck" style="margin-top:30px">
+            <div class="card">
+            <div class="card-body">
+                <div class="col-12 float-none">
+                        <img src="{{ prod.icon }}" style="max-height:100%px; max-width:100%" class="rounded d-block" alt="A generic square placeholder image with rounded corners in a figure.">
+                        <br>
+                        <hr>
+                        <h5 class="card-title">{{ prod.title }}</h5>
+                        <hr>
+                        <p class="card-text"><label class=""><i><u>Description:</u></i></label> {{ prod.body }}</p>
+                        <form method="POST" action="{% url 'upvote' prod.id %}">
+                            {% csrf_token %}
+                            <button class="btn btn-outline-danger"><span class="oi oi-heart"></span>  {{ prod.votes }}</button>
+                            <input type="hidden">
+                        </form>
+                        <hr>
+                        <p class="card-text"><small class="text-info">{{prod.pub_date}}</small></p>
+                </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}

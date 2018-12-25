@@ -1,5 +1,5 @@
 {% extends "master.html" %}
-{% block title %}Create a Product{% endblock %}
+{% block title %}{{product.title}} - Productidea by {{product.hunter}} {% endblock %}
 {% block head %}
 <style>
     .icon_size_ {
@@ -15,12 +15,16 @@
                     <img src="{{product.icon.url}}" alt="{{product.title}} at Snipper.com" class="rounded float-left icon_size_">
                 </div>
                 <div class="col-2">
-                    <h3 style="text-align:left">{{product.title}}</h3><hr><br>
-                    <p style="text-transform: uppercase"><span class="oi oi-person"></span>  {{product.hunter}} </p>
+                    <h3 style="text-align:left">{{product.title}}</h3><hr>
+                    <p style="text-transform: uppercase"><b><span class="oi oi-person"></span>  {{product.hunter}}</b> </p>
                     <script>
                     </script>
-                    <a href="#" class="btn btn-success"><span class="oi oi-heart"></span><b id="likes"> Like me!</b></a>
-                    
+                    <br>
+                    <form id="voteup" method="POST" action="{% url 'upvote' product.id %}">
+                        {% csrf_token %}
+                        <button class="btn btn-success"><span class="oi oi-heart"></span><b id="likes"> Like me! </b></button>
+                        <input type="hidden">
+                    </form>   
                 </div>
         </div>
         <br>
@@ -39,16 +43,16 @@
         </div>
         <hr>
         <div class="row">
-                <div class="col-2">
+                <div class="col-3">
                     <p><span class="oi oi-clock"></span> {{product.pub_date}}</p>
                 </div>
-                <div class="col-1">
+                <div class="col-2">
                     <p style="text-transform: uppercase"><span class="oi oi-person"></span>  {{product.hunter}} </p>
                 </div>
-                <div class="col-1">
-                        <p style="text-transform: uppercase"><span class="oi oi-person"></span>  {{product.votes}} </p>
+                <div class="col-2">
+                        <p style="text-transform: uppercase"><span class="oi oi-heart"></span>  {{product.votes}} </p>
                 </div>
             </div>
-
-    </div>       
+    </div>   
+     
 {% endblock %}

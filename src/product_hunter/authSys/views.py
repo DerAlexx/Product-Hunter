@@ -34,13 +34,13 @@ def sign_up_(request):
             if request.POST.get('psw') is not None and len(request.POST.get('psw')) >= 8:
                 if (request.POST.get('psw') == request.POST.get('pswc')):
                     try:
-                        if User.objects.get(username = request.POST.get('username')):
+                        if user.objects.get(username = request.POST.get('username')):
                             return render(request, 'signup.html', {'error':"This username has already been taken choose another one"})
                         else:
                             return redirect("/")
-                    except User.DoesNotExist as user_ex:
+                    except user.DoesNotExist as user_ex:
                         print("Will create new User: " + str(request.POST.get('username')))
-                        auth.login(request, User.objects.create_user(username=request.POST.get('username'), password=request.POST.get('psw')))
+                        auth.login(request, user.objects.create_user(username=request.POST.get('username'), password=request.POST.get('psw')))
                         return redirect("/")
                     except Exception as err:
                         print(err)

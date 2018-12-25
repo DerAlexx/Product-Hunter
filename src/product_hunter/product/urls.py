@@ -6,4 +6,5 @@ urlpatterns = [
     path('', views.index, name="index"),
     path('create/', views.create, name="createProduct"),
     path('<int:product_id>', views.detail_product, name="details"),
+    path('<int:product_id>/up', views.upVote, name="upvote"),
 ]

@@ -4,7 +4,7 @@ from .models import product
 import imghdr,datetime
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'index.html', {'product': product.objects.order_by('-votes')})
 
 @login_required(login_url='/login')
 def create(request):
@@ -49,3 +49,14 @@ def create(request):
 def detail_product(request, product_id):
     prod = get_object_or_404(product, pk=product_id)
     return render(request, 'details.html', {'product':prod, 'key':product_id})
+
+@login_required(login_url="/login")
+def upVote(request, product_id):
+    if request.method == 'POST':
+        print("Halloooooo")
+        prod = get_object_or_404(product, pk=product_id)
+        prod.votes += 1
+        prod.save()
+        return redirect(str(request.META.get('HTTP_REFERER')))
+    else:
+        return redirect(str(request.META.get('HTTP_REFERER')))
