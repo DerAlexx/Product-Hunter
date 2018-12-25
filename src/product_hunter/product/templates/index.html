@@ -12,25 +12,27 @@
 {% endblock %}
 {% block content %}
 <div class="w-75 p-3 container-fluid">
-    <br>
-    <h3 class="list-group-item list-group-item-info"><span class="oi oi-compass"></span> Products</h3> 
-    <hr>
+    <!--<h3 class="list-group-item list-group-item-info"><span class="oi oi-compass"></span> Products</h3> -->
+    <hr> 
     <div class="list-group-item list-group-item-secondary">
-        <from>
-            <label for="exampleFormControlSelect1">Order by:</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-                <option value="volvo">Most Love<span class="oi oi-heart"></span></option>
-                <option value="saab">Less Love</option>
-                <option value="opel">Newest</option>
-                <option value="audi">Oldest</option>
+        <form method="POST" action="{% url 'index' %}">
+            {% csrf_token %}
+            <h5>Order by:</h5><br>
+            <select name="opt" class="form-control" id="exampleFormControlSelect1">
+                <option value="1">Most Love</option>
+                <option value="2">Less Love</option>
+                <option value="3">Newest Ideas</option>
+                <option value="4">Oldest Ideas</option>
+                <option value="5">Creator (A-Z)</option>
+                <option value="6">Creator (Z-A)</option>
             </select>
             <br>
-            <button class="btn btn-info">Order</button>
-        </from>
+            <button type="submit" class="btn btn-outline-dark"><span class="oi oi-magnifying-glass"></span> Order</button>
+        </form>
     </div>
-    <hr>
+    <hr> 
     {% for prod in product.all %}
-    <div class="card-deck" style="margin-top:30px">
+    <div class="card-deck" style="margin-top:30px;">
             <div class="card">
             <div class="card-body">
                 <div class="col-12 float-none">
@@ -40,13 +42,34 @@
                         <h5 class="card-title">{{ prod.title }}</h5>
                         <hr>
                         <p class="card-text"><label class=""><i><u>Description:</u></i></label> {{ prod.body }}</p>
-                        <form method="POST" action="{% url 'upvote' prod.id %}">
-                            {% csrf_token %}
-                            <button class="btn btn-outline-danger"><span class="oi oi-heart"></span>  {{ prod.votes }}</button>
-                            <input type="hidden">
-                        </form>
+                        <div class="row">
+                            <div class="col-1">
+                                <form method="POST" action="{% url 'upvote' prod.id %}">
+                                    {% csrf_token %}
+                                    <button class="btn btn-outline-danger"><span class="oi oi-heart"></span>  {{ prod.votes }}</button>
+                                    <input type="hidden">
+                                </form>       
+                            </div>
+                            <div class="col-2">
+                                <form method="POST" action="{% url 'details' prod.id %}">
+                                    {% csrf_token %}
+                                    <button class="btn btn-outline-info"><span class="oi oi-location"></span> See more details! </button>
+                                    <input type="hidden">
+                                </form>
+                            </div>
+                            <div class="col-2">
+                                <a href="{{ prod.url }}" target="_blank" class="btn btn-outline-danger"><span class="oi oi-globe"></span> Visited me!</a>
+                            </div>
+                        </div>
                         <hr>
-                        <p class="card-text"><small class="text-info">{{prod.pub_date}}</small></p>
+                        <div class="row">
+                            <div class="col-2">
+                                <p class="card-text"><small class="text-muted"><span class="oi oi-clock"></span> {{prod.pub_date}}</small></p>
+                            </div>
+                            <div class="col-2">
+                                    <p class="card-text"><small class="text-muted"><span class="oi oi-person"></span> {{prod.hunter}}</small></p>
+                            </div>
+                    </div>
                 </div>
                 </div>
             </div>

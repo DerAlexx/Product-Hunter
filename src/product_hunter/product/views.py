@@ -4,7 +4,23 @@ from .models import product
 import imghdr,datetime
 
 def index(request):
-    return render(request, 'index.html', {'product': product.objects.order_by('-votes')})
+    if request.method == 'POST':
+        if str(request.POST.get('opt')) == "1":
+            return render(request, 'index.html', {'product': product.objects.order_by('-votes')})
+        elif str(request.POST.get('opt')) == "2":
+            return render(request, 'index.html', {'product': product.objects.order_by('votes')})
+        elif str(request.POST.get('opt')) == "3":
+            return render(request, 'index.html', {'product': product.objects.order_by('-pub_date')})
+        elif str(request.POST.get('opt')) == "4":
+            return render(request, 'index.html', {'product': product.objects.order_by('pub_date')})
+        elif str(request.POST.get('opt')) == "5":
+            return render(request, 'index.html', {'product': product.objects.order_by('hunter')})
+        elif str(request.POST.get('opt')) == "6":
+            return render(request, 'index.html', {'product': product.objects.order_by('-hunter')})
+        else:
+            return render(request, 'index.html', {'product': product.objects})
+    else:
+        return render(request, 'index.html', {'product': product.objects})
 
 @login_required(login_url='/login')
 def create(request):
